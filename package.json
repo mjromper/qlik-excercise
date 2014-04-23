@@ -1,0 +1,20 @@
+{
+  "name": "angular-seed-require",
+  "version": "0.0.1",
+  "description": "Angular Seed with Require",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mjromper/angular-seed-require.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-less": "~0.5.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-nightwatch": "^0.1.7",
+    "grunt-angular-templates": "~0.5.3",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-clean": "~0.5.0"
+  }
+}

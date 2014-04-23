@@ -1,0 +1,11 @@
+{
+  "name": "qlik-server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "socket.io": "*",
+    "flickrapi": "*",
+    "underscore-node": "*"
+  }
+}
