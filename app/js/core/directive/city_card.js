@@ -12,7 +12,7 @@ function(app){
             templateUrl: 'partials/city_card.html',
             link: function(scope, element, attrs) {
                 scope.$watch('item', function(item) {
-                   console.log('item', item);
+                   //console.log('item', item);
                 });
 
             }

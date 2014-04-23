@@ -20,24 +20,6 @@ function(app) {
                 };
             };
 
-            function keyMatches(pattern, key) {
-                var patternSplit = pattern.split('.'),
-                    keySplit = key.split('.'),
-                    matches = true;
-
-                if (patternSplit.length !== keySplit.length) {
-                    return false;
-                }
-
-                $.each(patternSplit, function(i, p) {
-                    if (p !== '*' && p !== keySplit[i]) {
-                        matches = false;
-                    }
-                });
-
-                return matches;
-            }
-
             $rootScope.$on('event:auth-loginConfirmed', function(e) {
                 console.log('loginConfirmed');
                 $timeout(function() {
@@ -72,7 +54,6 @@ function(app) {
                 if (events instanceof Array === false) {
                     events = [events];
                 }
-                console.log('events', events);
 
                 events.forEach(function(eventName) {
                     ioSocket.emit('subscribe', eventName);
@@ -85,9 +66,7 @@ function(app) {
 
                 var processEvent = function(e) {
                     $.each(listeners, function(keyPattern, cb) {
-                        //if (keyMatches(keyPattern, e.key)) {
-                            cb(e.data, e.key);
-                        //}
+                        cb(e.data, e.key);
                     });
                 };
 
@@ -98,6 +77,10 @@ function(app) {
                 });
 
                 return subscription;
+            };
+
+            socket.unsubscribe = function(eventName, scope) { 
+                ioSocket.emit('unsubscribe', eventName);         
             };
 
             socket.connect = function(url) {

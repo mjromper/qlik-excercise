@@ -33,6 +33,7 @@ Flickr.authenticate(flickrOptions, function(error, flickr) {
 function handlerSocket(socket, flickr) {
       socket.on('subscribe', function (data) {
         if (!idTask){
+            console.log('subscribe');
             idTask = setInterval(function(){
                 getPictures(flickr, socket);
             }, 10000);
@@ -40,6 +41,7 @@ function handlerSocket(socket, flickr) {
       });
 
       socket.on('unsubscribe', function (data) {
+        console.log('unsubscribe');
         clearInterval(idTask);
         idTask = null;
       });     
@@ -70,6 +72,7 @@ function getPictures(flickr, socket){
             if (p.ispublic == 1){
                 images.pics.push({
                     url: 'http://farm'+p.farm+'.staticflickr.com/'+p.server+'/'+p.id+'_'+p.secret+'_m.jpg',
+                    url_small: 'http://farm'+p.farm+'.staticflickr.com/'+p.server+'/'+p.id+'_'+p.secret+'_s.jpg',
                     title: p.title, 
                 })  
             }

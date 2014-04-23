@@ -1,7 +1,10 @@
 <div class="map" qlik-map data-items="city" ></div> 
 <div class="city-card" qlik-city-card data-item="cityData" ></div> 
-<div style="width:100%; position: absolute; top: 60px; left: 20px;">
-	<div style="float: left; margin-left: 10px;" ng-repeat="step in journey">
-		<i class="fa fa-long-arrow-right"></i> <span> {{step.name}}</span>
-	</div>
+<button ng-click="buttonClick();" class="btn button-travel" ng-class="{'btn-primary': !status, 'btn-danger': status}" >{{buttonTravel}}</button>
+<div class="journey-panel">
+    <ul>
+        <li ng-repeat="step in journey.slice().reverse()">{{step.name}}</li>
+    </ul>
 </div>
+
+
