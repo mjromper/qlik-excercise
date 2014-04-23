@@ -10,6 +10,8 @@ function(app){
                 items: '='
             },
             link: function(scope, element, attrs) {
+
+                console.log('fsadf', scope.items);
            
                 var width = element.width(),
                     height = element.height(),
@@ -36,12 +38,25 @@ function(app){
                 scope.$watch('items', function(items){
                     if (!items) return;
 
-                    items.forEach(function(d) {
+                    var data = angular.copy(items);
+
+                    
+                    data.forEach(function(d) {
+                        d.population = parseInt(d.population);
+                    });
+
+                    console.log('items', data);
+
+                    data.forEach(function(d) {
                         d.population = +d.population;
                     });
 
+                    svg.selectAll(".arc").remove();
+                    svg.selectAll("path").remove();
+                    svg.selectAll("text").remove();
+
                     var g = svg.selectAll(".arc")
-                        .data(pie(items))
+                        .data(pie(data))
                         .enter().append("g")
                         .attr("class", "arc");
 
@@ -54,7 +69,7 @@ function(app){
                         .attr("dy", ".35em")
                         .style("text-anchor", "middle")
                         .text(function(d) { return d.data.name; });
-                })   
+                }, true);   
 
 
             }

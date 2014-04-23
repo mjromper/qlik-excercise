@@ -67,7 +67,7 @@ function getPictures(flickr, socket){
     }, function(err, result) {
         if(err) { throw new Error(err); }
         
-        var images = {key: text, total: result.photos.total, pics: [], city: city };
+        var images = {key: text, total: parseInt(result.photos.total), pics: [], city: city };
         result.photos.photo.forEach(function(p){    
             if (p.ispublic == 1){
                 images.pics.push({
