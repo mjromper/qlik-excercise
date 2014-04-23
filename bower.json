@@ -15,7 +15,8 @@
     "bootstrap": "3.0.2",
     "font-awesome": "4.0.3",
     "socket.io-client": "~0.9.16",
-    "blnk-map": "git@github.com:BLNK-DEV/blnk-map.git#latest"
+    "blnk-map": "git@github.com:BLNK-DEV/blnk-map.git#latest",
+    "d3": "~3.3.6"
   },
   "ignore": [
     "**/.*",
