@@ -12,6 +12,7 @@ require.config({
         'socketio': '../lib/bower_components/socket.io-client/dist/socket.io',
         'mapbox': '../lib/bower_components/blnk-map/dist/mapbox',
         'qlik-map':'../lib/bower_components/blnk-map/dist/blnk.map.min',
+        'd3':'../lib/bower_components/d3/d3.min',
     },
     shim: {
         'angular': {'exports' : 'angular', deps: ['jQuery']},

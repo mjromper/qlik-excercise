@@ -116,3 +116,13 @@ body {
     max-height: 40px;
   }
 }
+.donut-chart {
+  position: absolute;
+  top: 60px;
+  right: 5px;
+  min-width: 150px;
+  min-height: 150px;
+}
+.donut-chart .arc path {
+  stroke: #fff;
+}

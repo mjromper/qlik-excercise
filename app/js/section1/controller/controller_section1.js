@@ -3,6 +3,7 @@ define([
     'core/service/socket',
     'core/directive/map',
     'core/directive/city_card',
+    'core/directive/donut_chart',
     'core/service/geolocation',
     'init'
 ],
@@ -17,6 +18,15 @@ function(app){
         $scope.status = false;
     	$scope.journey = [];
         $scope.buttonTravel = 'CONTINUE JOURNEY';
+        $scope.pictures = [
+            {name: '<5', population:2704659 },
+            {name: '14-17', population:2159981 },
+            {name: '18-24', population:3853788 },
+            {name: '5-13', population:4499890 },
+            {name: '25-44', population:14106543 },
+            {name: '45-64', population:8819342 },
+            {name: '≥65', population:612463 }
+        ];
         
 
         Geolocation.getCurrentLocation(function(position){
