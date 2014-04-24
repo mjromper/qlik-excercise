@@ -4,7 +4,7 @@
 <button ng-click="buttonClick();" class="btn button-travel" ng-class="{'btn-primary': !status, 'btn-danger': status}" >{{buttonTravel}}</button>
 <div class="journey-panel">
     <ul>
-        <li ng-repeat="step in journey.slice().reverse()">{{step.name}}</li>
+        <li ng-repeat="step in journey.slice().reverse()" style="color: {{step.color}};">{{step.name}}</li>
     </ul>
 </div>
 <!--

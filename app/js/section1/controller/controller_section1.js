@@ -48,12 +48,26 @@ function(app){
             $timeout(function(){
                 $scope.cityData = { city: city };
                 $scope.city = [city];
-                $scope.journey.push({name: city.name});
+                $scope.journey.push({name: city.name, color: 'white', code: city.continent_code });
             },100)
             
 
         }, function(){
             console.log('error getting current');
+        });
+
+        $scope.$on('bar-clicked', function(e, item){
+            var code = item.name;
+            $timeout(function(){
+                $scope.journey = _.map($scope.journey, function(j){
+                    if (j.code === code){
+                        j.color = $scope.colors[code];
+                    }else{
+                        j.color = 'white';
+                    }
+                    return j;
+                });
+            });
         });
 
 
@@ -78,7 +92,7 @@ function(app){
        			console.log('data', data);
        			$scope.city = [data.city];
        			$scope.cityData = data;
-       			$scope.journey.push({name: data.key, color: $scope.colors[data.city.continent_code]});
+       			$scope.journey.push({name: data.key, color: 'white', code: data.city.continent_code});
                 var total = data.total;
                 var cc = data.city.continent_code;
                 

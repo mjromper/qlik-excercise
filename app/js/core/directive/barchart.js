@@ -12,14 +12,14 @@ function(app){
             },
             link: function(scope, element, attrs) {
            
-                var width = element.width(),
+                var width = element.width()-65,
                     height = element.height();
                 var data = scope.items;
 
-                var barHeight = 40;
+                var barHeight = 30;
 
                 var chart = d3.select(element[0]).append("svg")
-                    .attr("width", width)
+                    .attr("width", width+65)
                     .attr("height", barHeight * data.length);  
 
                 var maxValue = d3.max(data, function(d){ return d.value; });
@@ -46,15 +46,28 @@ function(app){
                     .attr('stroke', '#444')
                     .attr('stroke-width', 0.5)
                     .on('click', function(d){
-                        $scope.$emit('bar-clicked', d);
-                    });
+                        scope.$emit('bar-clicked', d);
+                    })
+                    .style('cursor', 'pointer');
 
                 bar.append("text")
                     .attr('class', 'textBar')
                     .attr("x", function(d) { return x(d.value) - 3; })
                     .attr("y", barHeight / 2)
                     .attr("dy", ".15em")
-                    .text(function(d) { return d.value; });       
+                    .style('text-anchor', 'end')
+                    .text(function(d) { return d.value; }); 
+
+                bar.append("text")
+                    .attr('class', 'textTile')
+                    .attr("x", width +5 )
+                    .attr("y", barHeight / 2)
+                    .attr("dy", ".15em")
+                    .style('text-anchor', 'start')
+                    .style('fill', function(d){
+                        return scope.colors[d.name];
+                    })
+                    .text(function(d) { return d.title; });      
 
                 
                 scope.$watch('items', function(items){
@@ -97,7 +110,7 @@ function(app){
 
 
                 $(window).on('resize', function(){
-                    var width = element.width();
+                    var width = element.width()-65;
                     console.log(width);
                     x.range([0, width]);
                 }); 
