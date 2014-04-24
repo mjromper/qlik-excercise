@@ -37,8 +37,8 @@ function(app){
             var city = {
                 country_code: 'UK',
                 continent_code: 'EU',
-                country: 'United Kingdom',
-                name: 'London',
+                country: 'United Kingdom'.evenCap(),
+                name: 'London'.evenCap(),
                 continent: 'Europe',
                 lat: position.coords.latitude,
                 lon: position.coords.longitude
@@ -88,11 +88,14 @@ function(app){
         		subs = socket.subscribe('damedatos', $scope);
         	}     	
         	if (!subs) return;
-        	subs.on('damedatos', function(data, key) {
-       			console.log('data', data);
+        	subs.on('damedatos', function(data) {
+       			
+                data.city.name = data.city.name.evenCap();
+                data.city.country = data.city.country.evenCap();
+
        			$scope.city = [data.city];
        			$scope.cityData = data;
-       			$scope.journey.push({name: data.key, color: 'white', code: data.city.continent_code});
+       			$scope.journey.push({name: data.city.name, color: 'white', code: data.city.continent_code});
                 var total = data.total;
                 var cc = data.city.continent_code;
                 

@@ -9,11 +9,8 @@
     "underscore": "*",
     "requirejs": "~2.1.8",
     "requirejs-domready": "~2.0.1",
-    "angular-resource": "~1.2.10",
     "angular-route": "~1.2.10",
-    "angular-http-auth": "~1.2.1",
     "bootstrap": "3.0.2",
-    "font-awesome": "4.0.3",
     "socket.io-client": "~0.9.16",
     "blnk-map": "git@github.com:BLNK-DEV/blnk-map.git#latest",
     "d3": "~3.3.6"

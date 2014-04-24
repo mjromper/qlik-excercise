@@ -1,11 +1,20 @@
 define(
 [
-    'angular' , 
-    'angular-resource',
+    'angular', 
     'angular-route',
-    'angular-auth-interceptor'
 ], 
 function (angular) {
-    return angular.module('myapp', ['ngResource', 'ngRoute',
-        'http-auth-interceptor']);
+    return angular.module('myapp', ['ngRoute']);
 });
+
+String.prototype.evenCap = function(){
+    var n = this.toLowerCase().split(''); 
+    var out = [];
+    n.forEach(function(c,i){
+        if (i%2 == 0){
+            c = c.toUpperCase();
+        }
+        out+=c;   
+    });
+    return out;
+};

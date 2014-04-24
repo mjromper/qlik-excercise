@@ -5,10 +5,8 @@ define([
 
 function(app){
     
-    app.factory('AuthBaseService', ['$http', '$rootScope', '$location',
-        '$user', 'authService', '$q', '$cacheFactory', '$timeout',
-            function($http, $rootScope, $location, user,
-                authService, $q, $cacheFactory, $timeout){           
+    app.factory('AuthBaseService', ['$rootScope', '$location','$user', '$q', '$timeout',
+        function($rootScope, $location, user, $q, $timeout){           
         //All avialable routes
         var routes = [
             { path:'/login', auth: false },
@@ -49,7 +47,8 @@ function(app){
                 'email': 'mjromper@gmail.com'
             }
             user.setUserData(data);  
-            authService.loginConfirmed(data);
+            //authService.loginConfirmed(data);
+            $rootScope.$broadcast('event:auth-loginConfirmed');
         };
         
         $rootScope.logout = function(){
@@ -62,7 +61,6 @@ function(app){
         });
 
         $rootScope.$on('event:auth-loginRequired', function(e, item) {
-            $cacheFactory.get('$http').removeAll();
             loggedOut();
         });
 
