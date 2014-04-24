@@ -4,6 +4,7 @@ define([
     'core/directive/map',
     'core/directive/city_card',
     'core/directive/donut_chart',
+    'core/directive/barchart',
     'core/service/geolocation',
     'init'
 ],
@@ -17,15 +18,17 @@ function(app){
             
         $scope.status = false;
     	$scope.journey = [];
-        $scope.buttonTravel = 'CONTINUE JOURNEY';
+        $scope.buttonTravel = 'START JOURNEY';
+
+        $scope.colors = { 'EU': '#01A4A4', 'AF': '#61AE24', 'OC': '#F18D05', 'SA': '#B10DC9', 'NA': '#E54028', 'AN': '#113F8C', 'AS': '#D0D102'};
         $scope.pictures = [
-            {name: 'EU', population: 0 },
-            {name: 'AF', population: 0 },
-            {name: 'OC', population: 0 },
-            {name: 'SA', population: 0 },
-            {name: 'NA', population: 0 },
-            {name: 'AN', population: 0 },
-            {name: 'AS', population: 0 }
+            {name: 'EU', title: 'Europe', value: 1 },
+            {name: 'AF', title: 'Africa', value: 0 },
+            {name: 'OC', title: 'Oceania', value: 0 },
+            {name: 'SA', title: 'S. America', value: 0 },
+            {name: 'NA', title: 'N. America', value: 0 },
+            {name: 'AN', title: 'Antartica', value: 0 },
+            {name: 'AS', title: 'Asia', value: 0 }
         ];
         
 
@@ -33,6 +36,7 @@ function(app){
             console.log('current', position);
             var city = {
                 country_code: 'UK',
+                continent_code: 'EU',
                 country: 'United Kingdom',
                 name: 'London',
                 continent: 'Europe',
@@ -59,7 +63,7 @@ function(app){
             }else if ($scope.status === true){
                 socketUnsubscription();
                 $scope.status = false;
-                $scope.buttonTravel = 'CONTINUE JOURNEY';
+                $scope.buttonTravel = 'CONTINUE TRAVELING';
             }
         }
 
@@ -72,13 +76,13 @@ function(app){
        			console.log('data', data);
        			$scope.city = [data.city];
        			$scope.cityData = data;
-       			$scope.journey.push({name: data.key});
+       			$scope.journey.push({name: data.key, color: $scope.colors[data.city.continent_code]});
                 var total = data.total;
                 var cc = data.city.continent_code;
                 
                 _.each($scope.pictures, function(picture){
                     if (picture.name == cc){
-                        picture.population += total;
+                        picture.value++;
                     }
                 });
         	});

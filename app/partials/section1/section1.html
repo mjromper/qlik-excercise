@@ -1,4 +1,4 @@
-<div class="map" qlik-map data-items="city" ></div> 
+<div class="map" qlik-map data-items="city" data-colors="colors"></div> 
 <div class="city-card" qlik-city-card data-item="cityData" ></div> 
 <button ng-click="buttonClick();" class="btn button-travel" ng-class="{'btn-primary': !status, 'btn-danger': status}" >{{buttonTravel}}</button>
 <div class="journey-panel">
@@ -6,6 +6,10 @@
         <li ng-repeat="step in journey.slice().reverse()">{{step.name}}</li>
     </ul>
 </div>
-<div class="donut-chart" qlik-donut-chart data-items="pictures"></div> 
+<!--
+<div class="donut-chart" qlik-donut-chart data-items="pictures"></div> -->
+
+<div class="bar-chart" qlik-bar-chart data-items="pictures" data-colors="colors"></div> 
+
 
 

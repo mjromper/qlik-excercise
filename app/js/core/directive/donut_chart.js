@@ -26,7 +26,7 @@ function(app){
 
                 var pie = d3.layout.pie()
                     .sort(null)
-                    .value(function(d) { return d.population; });
+                    .value(function(d) { return d.value; });
 
                 var svg = d3.select(element[0]).append("svg")
                     .attr("width", width)
@@ -42,13 +42,13 @@ function(app){
 
                     
                     data.forEach(function(d) {
-                        d.population = parseInt(d.population);
+                        d.value = parseInt(d.value);
                     });
 
                     console.log('items', data);
 
                     data.forEach(function(d) {
-                        d.population = +d.population;
+                        d.value = +d.value;
                     });
 
                     svg.selectAll(".arc").remove();

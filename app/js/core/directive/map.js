@@ -8,12 +8,11 @@ function(app){
             restrict: 'A',
             scope: { 
                 items: '=',
-                options: '@', 
+                colors: '='
             },
             link: function(scope, element, attrs) {
-                var options = attrs.option,
-                    map,
-                    markers;
+
+                var map;
 
                 map = Blnk.map(element, {
                     markerFunction: function(item) {
@@ -26,7 +25,7 @@ function(app){
                                 title: item.name,
                                 cssClass: 'fa-map-marker',
                                 country: item.country,
-                                color: '#a1ca80',
+                                color: scope.colors[item.continent_code],
 
                             }
                         }
@@ -35,17 +34,6 @@ function(app){
                     '<div style="color: {{marker.color}}">{{marker.country}}</div>'+
                     '<div class="blnk-map-tooltip-arrow-down"></div>'
                 }); 
-
-                element.on('markerclick', function(e, marker, asset) {
-                    map.select(marker);
-
-                    //If function defined for marker click
-                    if (scope.onMarkerClick){
-                        scope.$apply(function() {
-                            scope.onMarkerClick(e, marker, asset);
-                        });
-                    }
-                });
 
                 scope.$watch('items', function(values) {
                     if (values){   
