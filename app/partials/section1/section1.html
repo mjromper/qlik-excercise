@@ -1,5 +1,6 @@
 <div class="map" qlik-map data-items="city" data-colors="colors"></div> 
-<div class="city-card" qlik-city-card data-item="cityData" ></div> 
+<h3 ng-if="cityData">{{cityData.city.name}} ({{cityData.city.country}})</h3>
+<div class="city-card" qlik-city-card data-item="cityData"></div> 
 <button ng-click="buttonClick();" class="btn button-travel" ng-class="{'btn-primary': !status, 'btn-danger': status}" >{{buttonTravel}}</button>
 <div class="journey-panel">
     <ul>

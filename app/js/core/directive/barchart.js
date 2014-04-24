@@ -11,14 +11,12 @@ function(app){
                 colors: '='
             },
             link: function(scope, element, attrs) {
-
-                console.log('fsadf', scope.items);
            
                 var width = element.width(),
                     height = element.height();
                 var data = scope.items;
 
-                var barHeight = 20;
+                var barHeight = 40;
 
                 var chart = d3.select(element[0]).append("svg")
                     .attr("width", width)
@@ -56,13 +54,15 @@ function(app){
                     .attr("x", function(d) { return x(d.value) - 3; })
                     .attr("y", barHeight / 2)
                     .attr("dy", ".15em")
-                    .text(function(d) { return d.value; });
+                    .text(function(d) { return d.value; });       
 
                 
-
                 scope.$watch('items', function(items){
+                    renderChart();                    
+                }, true);
 
-                    var data = items;
+                function renderChart(){
+                    var data = scope.items;
 
                     var maxValue = d3.max(data, function(d){ return d.value; });
                     if (maxValue == 0) maxValue = 1;
@@ -93,9 +93,14 @@ function(app){
                     .text(function(d) { 
                         return d.value; 
                     });
-                          
+                }  
 
-                }, true);   
+
+                $(window).on('resize', function(){
+                    var width = element.width();
+                    console.log(width);
+                    x.range([0, width]);
+                }); 
 
 
             }

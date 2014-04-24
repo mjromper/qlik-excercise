@@ -14,6 +14,12 @@ body {
   padding-bottom: 40px;
   background-color: #eee;
 }
+h3 {
+  position: absolute;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
 .map {
   position: absolute;
   width: 100%;
@@ -24,8 +30,9 @@ body {
 }
 .button-travel {
   position: absolute;
-  top: 60px;
-  left: 25px;
+  top: 10px;
+  left: 40%;
+  z-index: 10000;
 }
 .journey-panel {
   background: rgba(161, 202, 128, 0.4);
@@ -33,12 +40,12 @@ body {
   max-height: 200px;
   overflow: auto;
   position: absolute;
-  top: 90px;
-  left: 15px;
+  top: 60px;
+  left: 0px;
   box-shadow: 3px 3px 5px 6px #ccc;
   border-radius: 4px;
   border: 2px solid #a1ca80;
-  margin: 10px;
+  margin: 0px;
   padding: 5px;
 }
 .journey-panel li {
@@ -108,14 +115,6 @@ body {
   max-height: 130px;
   border-radius: 100%;
 }
-@media (max-width: 600px) {
-  .city-card .panel-body {
-    height: 70px;
-  }
-  .city-card .panel-body img {
-    max-height: 40px;
-  }
-}
 .donut-chart {
   position: absolute;
   top: 60px;
@@ -130,11 +129,31 @@ body {
   position: absolute;
   top: 60px;
   right: 5px;
-  min-width: 200px;
+  min-width: 250px;
   min-height: 150px;
 }
 .bar-chart text {
   fill: white;
   font: 10px sans-serif;
   text-anchor: end;
+}
+@media (max-width: 600px) {
+  .city-card .panel-body {
+    height: 70px;
+  }
+  .city-card .panel-body img {
+    max-height: 40px;
+  }
+  .map {
+    height: 250px;
+  }
+  .bar-chart {
+    position: absolute;
+    top: 250px;
+    min-width: 100%;
+    min-height: 150px;
+  }
+  .journey-panel {
+    display: none;
+  }
 }

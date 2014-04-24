@@ -43,8 +43,10 @@ function(app){
                 lat: position.coords.latitude,
                 lon: position.coords.longitude
             }
+
             
             $timeout(function(){
+                $scope.cityData = { city: city };
                 $scope.city = [city];
                 $scope.journey.push({name: city.name});
             },100)
